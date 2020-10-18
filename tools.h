@@ -16,7 +16,7 @@ auto measure_time(Fn &&fn, Args &&...args)
     const auto start = high_resolution_clock::now();
     for (auto i = 0; i < N; ++i) (fn)(std::forward<Args>(args)...);
     const auto stop = high_resolution_clock::now();
-    return duration_cast<D>(stop - start).count() / N;
+    return duration_cast<D>(stop - start).count() / static_cast<double>(N);
 }
 
 // \brief Specialization to measure execution time of a member function.
@@ -32,7 +32,7 @@ auto measure_time(Fn &&fn, Ptr *ptr, Args &&...args)
     const auto start = high_resolution_clock::now();
     for (auto i = 0; i < N; ++i) (ptr->*fn)(std::forward<Args>(args)...);
     const auto stop = high_resolution_clock::now();
-    return duration_cast<D>(stop - start).count() / N;
+    return duration_cast<D>(stop - start).count() / static_cast<double>(N);
 }
 
 }
