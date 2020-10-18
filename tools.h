@@ -1,5 +1,7 @@
 #include <chrono>
 
+namespace tool {
+
 using namespace std::chrono;
 
 // \brief Measure execution time of a function.
@@ -33,3 +35,4 @@ auto measure_time(Fn &&fn, Ptr *ptr, Args &&...args)
     return duration_cast<D>(stop - start).count() / N;
 }
 
+}
